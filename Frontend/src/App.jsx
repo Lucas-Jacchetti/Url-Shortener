@@ -7,9 +7,7 @@ function App() {
 
   return (
     <>
-      <body className='bg-amber-400'>
         <MyComponent/>
-      </body>
       
     </>
   )
