@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/APIservice';
+import convert from '../assets/convert.png'
 
 function MyComponent(){
   const [originalUrl, setOriginalUrl] = useState('');
@@ -11,8 +12,12 @@ function MyComponent(){
     event.preventDefault(); // Prevent page reload
     setError(null); // Clear any previous errors
       try {
-        const response = await api.post('/url/shorten', { originalUrl });
-        console.log('Shortened URL:', response.data);
+        const response1 = await api.post('/url/shorten', { originalUrl });
+        console.log('Shortened URL:', response1.data);
+
+        const response2 = await api.get('/url/shorten', { originalUrl });
+        console.log('Shortened URL:', response2.data);
+
       } catch (error) {
         console.error('Error:', error);
       }
@@ -20,24 +25,27 @@ function MyComponent(){
 
   return (
     <>
-      <div className=' flex flex-col h-full w-auto items-center justify-center mt-50   gap-15'>
+      <div className=' flex flex-col h-full w-auto items-center justify-center mt-50 font-bold'>
         
           <h2 className='flex items-center justify-center text-4xl'>URL Shortener</h2>
           
-          <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center gap-8'>
+          <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center gap-8 mt-12'>
             <input
-            className='border rounded-xl p-1 w-90 h-12'
+            className='border rounded-xl p-1 pl-3 w-90 h-12'
             type="url"
             placeholder="Enter URL"
             value={originalUrl}
             onChange={(e) => setOriginalUrl(e.target.value)}
             required
             />
-            <button type="submit" className='border rounded-xl bg-buttongray w-30 h-9 cursor-pointer'>Shorten</button>
+            <button type="submit" className='border rounded-xl text-xl bg-buttongray w-40 h-12 cursor-pointer flex flex-row items-center justify-center gap-3'>
+              Shorten
+              <img src={convert} alt="" className='h-8 w-8'/>
+            </button>
           </form>
 
           {/* {shortenedUrl && ( */}
-            <div className='border rounded-xl p-2 flex flex-row'>
+            <div className='border rounded-xl p-3 flex flex-col items-center justify-center gap-2 mt-10'>
               <p>Shortened URL: </p>
               <a href={`http://localhost:3000/url/${shortenedUrl}`} target="_blank" rel="noopener noreferrer">
                 {`http://localhost:3000/url/${shortenedUrl}`}
