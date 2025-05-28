@@ -4,7 +4,7 @@ import convert from '../assets/convert.png'
 
 function MyComponent(){
   const [originalUrl, setOriginalUrl] = useState('');
-  const [shortenedUrl, setShortenedUrl] = useState(null);
+  const [shortUrl, setShortUrl] = useState(null);
   const [error, setError] = useState(null);
 
 
@@ -13,10 +13,10 @@ function MyComponent(){
     setError(null); // Clear any previous errors
       try {
         const response1 = await api.post('/url/shorten', { originalUrl });
-        console.log('Shortened URL:', response1.data);
+        setShortUrl(response1.data.shortUrl)
 
-        const response2 = await api.get('/url/shorten', { originalUrl });
-        console.log('Shortened URL:', response2.data);
+        const response2 = await api.get(`/url/${shortUrl}`);
+        
 
       } catch (error) {
         console.error('Error:', error);
@@ -44,14 +44,14 @@ function MyComponent(){
             </button>
           </form>
 
-          {/* {shortenedUrl && ( */}
+          {shortUrl && (
             <div className='border rounded-xl p-3 flex flex-col items-center justify-center gap-2 mt-10'>
               <p>Shortened URL: </p>
-              <a href={`http://localhost:3000/url/${shortenedUrl}`} target="_blank" rel="noopener noreferrer">
-                {`http://localhost:3000/url/${shortenedUrl}`}
+              <a href={`http://localhost:3000/url/${shortUrl}`} target="_blank" rel="noopener noreferrer">
+                {`http://localhost:3000/url/${shortUrl}`}
               </a>
             </div>
-          {/* )} */}
+          )}
         
       </div>
 
