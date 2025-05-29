@@ -18,7 +18,7 @@ export class UrlShortenerController {
         const url = await this.urlService.find(shortUrl);
 
         if (url) {
-            console.log("Redirected succes")
+            console.log("Redirected success")
             return res.redirect(302, url.originalUrl); // Temporary Redirect
         } else {
             return res.status(404).json({ error: "URL not found" });

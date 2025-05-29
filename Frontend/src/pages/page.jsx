@@ -9,16 +9,15 @@ function MyComponent(){
 
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent page reload
-    setError(null); // Clear any previous errors
+    event.preventDefault(); //previne que a pagina recarregue
+    setError(null); //limpa erros anteriores
       try {
         const response1 = await api.post('/url/shorten', { originalUrl });
-        setShortUrl(response1.data.shortUrl)
-
-        const response2 = await api.get(`/url/${shortUrl}`);
+        //axios faz uma requisição post no caminho indicado, passando a url original
         
+        setShortUrl(response1.data.shortUrl) //diz que a url curta vai ser o resultado da response1 (requisição passando a url longa)     
 
-      } catch (error) {
+      } catch (error) { //erro
         console.error('Error:', error);
       }
   };
@@ -35,8 +34,8 @@ function MyComponent(){
             type="url"
             placeholder="Enter URL"
             value={originalUrl}
-            onChange={(e) => setOriginalUrl(e.target.value)}
-            required
+            onChange={(e) => setOriginalUrl(e.target.value)} //a url original vai ser a que for digitada aqui
+            required //campo obrigatório
             />
             <button type="submit" className='border rounded-xl text-xl bg-buttongray w-40 h-12 cursor-pointer flex flex-row items-center justify-center gap-3'>
               Shorten
