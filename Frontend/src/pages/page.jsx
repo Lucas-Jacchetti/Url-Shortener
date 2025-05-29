@@ -6,7 +6,6 @@ function MyComponent(){
   const [originalUrl, setOriginalUrl] = useState('');
   const [shortUrl, setShortUrl] = useState(null);
   const [error, setError] = useState(null);
-
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -14,8 +13,6 @@ function MyComponent(){
     setCopied(true); //diz que está copiado (na pratica)
     setTimeout(() => setCopied(false), 5000);
   };
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault(); //previne que a pagina recarregue
@@ -46,21 +43,21 @@ function MyComponent(){
             onChange={(e) => setOriginalUrl(e.target.value)} //a url original vai ser a que for digitada aqui
             required //campo obrigatório
             />
-            <button type="submit" className='rounded-xl text-xl bg-buttongray w-40 h-12 cursor-pointer flex flex-row items-center justify-center gap-3'>
+            <button type="submit" className='rounded-xl text-xl bg-buttongray w-40 h-12 cursor-pointer flex flex-row items-center justify-center gap-3 hover:bg-inputgray hover:scale-102  transition-transform transform'>
               Shorten
               <img src={convert} alt="" className='h-8 w-8'/>
             </button>
           </form>
 
           {shortUrl && (
-            <div className='flex flex-row bg-buttongray shadow-2xl shadow-black rounded-xl mt-10 h-20'>
+            <div className='flex flex-row bg-buttongray shadow-2xl shadow-black rounded-xl mt-10 h-20 '>
               <div className='flex flex-col items-center justify-center gap-2 ml-5'>
                 <p>Shortened URL: </p>
-                <a href={`http://localhost:3000/url/${shortUrl}`} target="_blank" rel="noopener noreferrer">
+                <a href={`http://localhost:3000/url/${shortUrl}`} target="_blank" rel="noopener noreferrer" className='cursor-default'>
                   {`http://localhost:3000/url/${shortUrl}`}
                 </a>
               </div>
-              <div className='flex justify-center items-center ml-5 bg-inputgray rounded-br-xl rounded-tr-xl p-3 cursor-pointer'
+              <div className='flex justify-center items-center ml-5 bg-inputgray rounded-br-xl rounded-tr-xl p-3 cursor-pointer hover:bg-copygray'
                   onClick={handleCopy} //quando clicar no botão, chama a função
                   //alterna o texto entre os dois dependendo do estado (copied se for true, copy se for false)
                 > {copied ? "Copied!" : "Copy"}
