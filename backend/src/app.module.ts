@@ -12,9 +12,10 @@ import { join } from 'path';
       rootPath: join(__dirname, '..', 'frontend'),
     }),
     urlShortenerModule,
-    MongooseModule.forRoot('mongodb+srv://lucasjacchetti:i80GA1LmbvYJ8WTY@cluster0.g3fqyzq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+    MongooseModule.forRoot(process.env.MONGODB_URI || "mongodb+srv://lucasjacchetti:i80GA1LmbvYJ8WTY@cluster0.g3fqyzq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"),
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
+console.log(process.env.MONGODB_URI)
