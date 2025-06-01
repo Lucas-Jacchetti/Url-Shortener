@@ -5,12 +5,11 @@ import { urlShortenerModule } from './UrlShortener/urlShortener.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-console.log("All Environment Variables:", process.env);
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'frontend'),
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, '..', 'frontend'),
+    // }),
     urlShortenerModule,
     
     MongooseModule.forRoot(process.env.MONGODB_URI || "mongodb+srv://lucasjacchetti:i80GA1LmbvYJ8WTY@cluster0.g3fqyzq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"),
