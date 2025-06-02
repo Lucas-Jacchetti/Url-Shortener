@@ -4,12 +4,15 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.enableCors();
+  app.enableCors({
+    origin: ['https://url-shortener-1xqw.vercel.app'], // coloque seu frontend Vercel aqui
+    methods: ['GET', 'POST'],
+    credentials: true,
+  });
 
   const port = process.env.PORT || 3000;
   await app.listen(port, '0.0.0.0');
 
   console.log(`Application is running on: ${await app.getUrl()}`);
-  console.log(`PORT: ${port}`);
 }
 bootstrap();
