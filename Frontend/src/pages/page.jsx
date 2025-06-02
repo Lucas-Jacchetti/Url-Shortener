@@ -30,9 +30,9 @@ function MyComponent(){
 
   return (
     <>
-      <div className=' flex flex-col h-full w-auto items-center justify-center mt-34 font-bold'>
+      <div className=' flex flex-col h-full w-auto items-center justify-center font-bold'>
         
-          <h2 className='flex items-center justify-center text-4xl'>URL Shortener</h2>
+          <h2 className='flex items-center justify-center text-4xl mt-34'>URL Shortener</h2>
           
           <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center gap-8 mt-12'>
             <input
