@@ -20,7 +20,7 @@ Um simples encurtador de URL, feito para adquirir experiência com a conexão do
 
 ## Documentação da API
 
-#### Retorna todos os itens
+#### Para encurtar e gerar o link
 
 ```http
   POST /url/shorten
@@ -30,7 +30,7 @@ Um simples encurtador de URL, feito para adquirir experiência com a conexão do
 | :---------- | :--------- | :---------------------------------- |
 | `url longa` | `string` | Encurta a URL e gera um link |
 
-#### Retorna um item
+#### Para acesso na web
 
 ```http
   GET /url/:shortUrl
